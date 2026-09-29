@@ -4,7 +4,7 @@
     async function search() {
         const value = document.getElementById("search").value;
 
-        const response = await fetch("/api/search", {
+        const response = await fetch("/products/search", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
