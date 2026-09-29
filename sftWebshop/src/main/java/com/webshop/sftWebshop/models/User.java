@@ -15,8 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "surname")
     private String surname;
 
     @OneToMany(mappedBy = "user")
