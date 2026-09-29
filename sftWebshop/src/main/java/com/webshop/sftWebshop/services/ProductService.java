@@ -1,6 +1,7 @@
 package com.webshop.sftWebshop.services;
 
 import com.webshop.sftWebshop.DTOs.ProductDTO;
+import com.webshop.sftWebshop.DTOs.ProductSearchResponse;
 import com.webshop.sftWebshop.models.Product;
 import com.webshop.sftWebshop.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,23 @@ public class ProductService {
 productRepository.save(newProduct);
     }
 
+    public ProductSearchResponse findProduct(String productName){
+Product product = productRepository.findByProductName(productName);
+
+if(product == null){
+    return new ProductSearchResponse(null, false);
+}
+
+ProductDTO productDTO = convertToProductDTO(product);
+
+return new ProductSearchResponse(productDTO, true);
+    }
+
     private Product convertToProduct(ProductDTO productDTO){
         return new Product(productDTO.getProductName());
+    }
+
+    private ProductDTO convertToProductDTO(Product product){
+        return new ProductDTO(product.getProductName());
     }
 }
