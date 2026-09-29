@@ -1,6 +1,5 @@
 package com.webshop.sftWebshop.models;
 
-import com.webshop.sftWebshop.DTOs.ProductDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +17,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
-    @Column(name = "productName")
+    @Column(name = "name")
     private String productName;
+
+    @Column(name = "description")
+    private String productDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
