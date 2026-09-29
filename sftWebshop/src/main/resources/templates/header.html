@@ -4,8 +4,8 @@
     async function search() {
         const value = document.getElementById("search").value;
 
-        const response = await fetch("/products/search", {
-            method: "POST",
+        const response = await fetch("/product/${encodeURIComponent(value)}", {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
             },
