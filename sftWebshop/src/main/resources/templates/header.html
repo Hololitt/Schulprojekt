@@ -1,7 +1,24 @@
 <button>Mein Konto</button>
 
-<form>
+<script>
+    async function search() {
+        const value = document.getElementById("search").value;
+
+        const response = await fetch("/api/search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(value)
+        });
+
+        const result = await response.json();
+        console.log(result);
+    }
+</script>
+
+<form onsubmit="search()" method="post">
     <label for = "search"></label>
-    <input type = "text">
-    <input type = "submit">
+    <input type = "text" id = "search" name = "search">
+    <input type = "submit" id = "submit" name = "submit">
 </form>
