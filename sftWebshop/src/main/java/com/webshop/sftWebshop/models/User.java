@@ -9,11 +9,15 @@ import java.util.List;
 @Entity
 @Getter
 @AllArgsConstructor
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -24,6 +28,10 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    @OneToMany(mappedBy = "user")
+    @Column(name = "email")
+    private String email;
+
+
+    @OneToMany(mappedBy = "owner")
     private List<Product> productList;
 }

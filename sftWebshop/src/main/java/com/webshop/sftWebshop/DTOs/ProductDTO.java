@@ -1,11 +1,9 @@
 package com.webshop.sftWebshop.DTOs;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
-public class ProductDTO {
-    private String productName;
-
+public record ProductDTO(Integer productId,
+        String title,
+        String description,
+        Double price,
+       String sellerUsername) {
 }

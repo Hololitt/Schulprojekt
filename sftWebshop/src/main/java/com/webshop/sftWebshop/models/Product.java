@@ -1,6 +1,7 @@
 package com.webshop.sftWebshop.models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,22 +9,22 @@ import lombok.Setter;
 @Table(name = "product")
 @Setter
 @Getter
+@Builder
 public class Product {
-    public Product(String productName){
-        this.productName = productName;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
-    @Column(name = "name")
-    private String productName;
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "description")
-    private String productDescription;
+    private String description;
+
+    @Column(name="price")
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User owner;
 }
