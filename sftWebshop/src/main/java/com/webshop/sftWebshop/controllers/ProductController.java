@@ -5,6 +5,7 @@ import com.webshop.sftWebshop.DTOs.ProductDTO;
 import com.webshop.sftWebshop.config.CurrentUserProvider;
 import com.webshop.sftWebshop.enums.OperationStatus;
 import com.webshop.sftWebshop.services.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,14 @@ public class ProductController {
 
 
     @GetMapping("/product/save")
-    public ResponseEntity<HttpStatus> saveProduct(@RequestBody ProductCreationForm form) throws AccessDeniedException {
+    public ResponseEntity<HttpStatus> saveProduct(@Valid @RequestBody ProductCreationForm form) throws AccessDeniedException {
 
         Integer userId = currentUserProvider.getUserId();
 productService.saveProduct(form, userId);
 
-return ResponseEntity.status(HttpStatus.CREATED).build();
+return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(HttpStatus.CREATED);
     }
 
     @GetMapping("/product/{title}")
@@ -43,9 +46,13 @@ public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("{id}") Integer pr
        OperationStatus operationStatus = productService.deleteProduct(productId, userId);
 
        if(operationStatus.equals(OperationStatus.SUCCESSFUL)){
-           return ResponseEntity.status(HttpStatus.OK).build();
+           return ResponseEntity
+                   .status(HttpStatus.OK)
+                   .body(HttpStatus.OK);
        }else{
-           return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+           return ResponseEntity
+                   .status(HttpStatus.FORBIDDEN)
+                   .body(HttpStatus.FORBIDDEN);
        }
 
     }
