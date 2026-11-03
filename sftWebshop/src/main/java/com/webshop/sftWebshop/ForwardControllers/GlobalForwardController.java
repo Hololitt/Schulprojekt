@@ -10,4 +10,9 @@ public class GlobalForwardController {
    public String showDashboard(){
        return "dashboard.html";
    }
+
+   @GetMapping("/registration")
+   public String showRegistration(){
+       return "register.html";
+   }
 }
