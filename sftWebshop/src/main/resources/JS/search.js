@@ -11,24 +11,24 @@ async function search() {
         });
 
         if (!response.ok) {
-            throw new Error("Товары не найдены");
+            throw new Error("Produkte nicht gefunden");
         }
 
         const products = await response.json();
-        console.log("Найденные товары:", products);
+        console.log("Gefundene Produkte:", products);
 
         renderProducts(products);
 
     } catch (error) {
-        console.error("Ошибка поиска:", error);
+        console.error("Suchfehler:", error);
         const container = document.getElementById("searchResultsContainer");
         if (container) {
-            container.innerHTML = `<p class="no-results">Товары не найдены или произошла ошибка.</p>`;
+            container.innerHTML = `<p class="no-results">Keine Produkte gefunden oder ein Fehler ist aufgetreten.</p>`;
         }
     }
 }
 
-// Функция построения карточек товаров (Grid)
+
 function renderProducts(products) {
     const container = document.getElementById("searchResultsContainer");
     if (!container) return;
@@ -36,7 +36,7 @@ function renderProducts(products) {
     container.innerHTML = "";
 
     if (!products || products.length === 0) {
-        container.innerHTML = `<p class="no-results">По вашему запросу ничего не найдено.</p>`;
+        container.innerHTML = `<p class="no-results">Zu Ihrer Anfrage wurde nichts gefunden.</p>`;
         return;
     }
 
@@ -50,19 +50,18 @@ function renderProducts(products) {
                 <p class="product-desc">${product.description}</p>
                 <div class="product-footer">
                     <span class="product-price">${product.price} €</span>
-                    <span class="product-seller">Продавец: <b>${product.sellerUsername}</b></span>
+                    <span class="product-seller">Verkäufer: <b>${product.sellerUsername}</b></span>
                 </div>
-                <!-- Кнопка удаления, опираясь на твой DELETE метод из API -->
-                <button class="btn-delete" onclick="deleteProduct(${product.productId})">Удалить</button>
+                <!-- Lösch-Button basierend auf Ihrer DELETE-Methode in der API -->
+                <button class="btn-delete" onclick="deleteProduct(${product.productId})">Löschen</button>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
-// Функция удаления товара (согласно твоему API: DELETE /api/product/delete/{id})
 async function deleteProduct(id) {
-    if (!confirm("Вы уверены, что хотите удалить этот товар?")) return;
+    if (!confirm("Sind Sie sicher, dass Sie dieses Produkt löschen möchten?")) return;
 
     try {
         const response = await fetch(`/api/product/delete/${id}`, {
@@ -70,14 +69,14 @@ async function deleteProduct(id) {
         });
 
         if (response.ok) {
-            alert("Товар успешно удален!");
-            search(); // Перезапускаем поиск, чтобы обновить список
+            alert("Produkt erfolgreich gelöscht!");
+            search();
         } else if (response.status === 403) {
-            alert("У вас нет прав на удаление этого товара (FORBIDDEN)");
+            alert("Sie haben keine Berechtigung, dieses Produkt zu löschen (FORBIDDEN)");
         } else {
-            alert("Ошибка при удалении товара");
+            alert("Fehler beim Löschen des Produkts");
         }
     } catch (e) {
-        console.error("Ошибка сети:", e);
+        console.error("Netzwerkfehler:", e);
     }
 }
