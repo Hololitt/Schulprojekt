@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <form id="registerForm">
-    <label for="email"><b>E-Mail</b></label>
-    <input type="email" id="email" name="email">
+    <fieldset>
 
-    <label for="username"><b>Username</b></label>
-    <input type="text" id="username" name="username">
+        <label for="email"><b>E-Mail</b></label>
+        <input type="email" id="email" name="email" required>
 
-    <label for="name"><b>Name</b></label>
-    <input type="text" id="name" name="name">
+        <label for="username"><b>Username</b></label>
+        <input type="text" id="username" name="username" required>
 
-    <label for="surname"><b>Surname</b></label>
-    <input type="text" id="surname" name="surname">
+        <label for="name"><b>Name</b></label>
+        <input type="text" id="name" name="name" required>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" id="password" name="password">
+        <label for="surname"><b>Surname</b></label>
+        <input type="text" id="surname" name="surname" required>
 
-    <input type="submit" value="Register">
+        <label for="password"><b>Password</b></label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Register">
+    </fieldset>
 </form>
 
 <script src="auth.js"></script>
