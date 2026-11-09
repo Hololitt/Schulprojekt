@@ -1,9 +1,18 @@
-<button>Konto</button>
+<header class="main-header">
+    <div class="header-container">
+        <a href="/dashboard.html" class="logo">SFT-Ebay</a>
 
-<form onsubmit="search()" method="post">
-    <label for = "search"></label>
-    <input type = "text" id = "search" name = "search">
-    <input type = "submit" id = "submit" name = "submit">
-</form>
+        <div class="search-bar-container">
+            <form id="searchForm" onsubmit="event.preventDefault(); search();">
+                <input type="text" id="search" placeholder="Suche" autocomplete="off">
+                <button type="submit" id="submit">Suchen</button>
+            </form>
+            <div id="searchResultsContainer" class="search-dropdown"></div>
+        </div>
 
-<script src="../JS/search.js"></script>
+        <div class="header-actions">
+            <a href="/create-product.html" class="btn-sell">verkaufen</a>
+            <a href="/profile.html" class="btn-konto">Konto</a>
+        </div>
+    </div>
+</header>
