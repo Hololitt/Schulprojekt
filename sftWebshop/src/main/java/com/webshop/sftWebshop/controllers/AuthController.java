@@ -9,14 +9,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -24,9 +24,9 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<HttpStatus> register(@Valid @RequestBody RegisterRequest request) {
-        try{
+        try {
             authService.register(request);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
@@ -35,9 +35,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<HttpStatus> login(@Valid @RequestBody LoginRequest request, HttpServletRequest httpRequest) {
-        authService.login(request, httpRequest);
-
-        return ResponseEntity.status(HttpStatus.OK).build();
+        try {
+            authService.login(request, httpRequest);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     @PostMapping("/logout")
@@ -49,5 +53,16 @@ public class AuthController {
         SecurityContextHolder.clearContext();
 
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<?> getCurrentUser(
+            @AuthenticationPrincipal UserDetails userDetails) {
+
+        if (userDetails == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        return ResponseEntity.ok(userDetails);
     }
 }

@@ -38,18 +38,29 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
+
                 .csrf(AbstractHttpConfigurer::disable)
+
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/login",
-                                "/register",
-                                "/api/auth/**"
+                                "/api/auth/**",
+                                "/css/**",
+                                "/js/**",
+                                "/JS/**",
+                                "/images/**",
+                                "/login.html",
+                                "/register.html",
+                                "/dashboard.html",
+                                "/api/product/**",
+                                "/favicon.ico",
+                                "/profile.html",
+                                "/"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
+
 
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
@@ -57,9 +68,10 @@ public class SecurityConfig {
 
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
+
                 .logout(logout -> logout
                         .logoutUrl("/api/auth/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/login.html")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                 );

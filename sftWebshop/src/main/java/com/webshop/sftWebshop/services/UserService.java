@@ -13,16 +13,15 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserSearchResponse findUserByUsername(String username){
-        Optional<User> optionalUser = userRepository.findUserByUsername(username);
-
-        return handleOptionalUser(optionalUser);
-    }
 
     public UserSearchResponse findUserByUserId(Integer userId){
         Optional<User> optionalUser = userRepository.findById(userId);
 
         return handleOptionalUser(optionalUser);
+    }
+
+    public Optional<User> findUserByEmail(String email){
+        return userRepository.findUserByEmail(email);
     }
 
     private UserSearchResponse handleOptionalUser(Optional<User> optionalUser){

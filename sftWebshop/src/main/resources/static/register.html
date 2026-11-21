@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="auth-page-container">
+<form id="registerForm">
+    <fieldset>
+        <legend>Konto erstellen</legend>
+
+        <label for="email"><b>E-Mail</b></label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="username"><b>Benutzername</b></label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="name"><b>Vorname</b></label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="surname"><b>Nachname</b></label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="password"><b>Passwort</b></label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Registrieren">
+
+        <div class="auth-switch">
+            Bereits ein Konto? <a href="/login.html">Anmelden</a>
+        </div>
+    </fieldset>
+</form>
+</div>
+
+<script type="module" src="/js/auth.js"></script>
+<script src="/js/load-header.js"></script>
+
+</body>
+</html>

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 @SuppressWarnings("unused")
@@ -26,15 +27,13 @@ public class UserDetailsServiceConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> {
-            UserSearchResponse response = userService.findUserByUsername(username);
+        return email -> {
+            Optional<User> optionalUser = userService.findUserByEmail(email);
 
-            boolean isFound = response.isFound();
-
-            if (!isFound) {
+            if (optionalUser.isEmpty()) {
                 throw new UsernameNotFoundException("User not found");
             }
-User user = response.getUser();
+User user = optionalUser.get();
 
             return new CustomUserDetails(
                     user.getName(),

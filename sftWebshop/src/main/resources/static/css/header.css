@@ -1,0 +1,84 @@
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 12px 20px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0053a0;
+    text-decoration: none;
+}
+
+.search-bar-container {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-bar-container form {
+    display: flex;
+    border: 2px solid #0053a0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-bar-container input[type="text"] {
+    flex: 1;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar-container button {
+    background-color: #0053a0;
+    color: white;
+    border: none;
+    padding: 0 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-bar-container button:hover {
+    background-color: #003d7a;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-sell, .btn-konto {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn-sell {
+    background-color: #f7f7f7;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-konto {
+    background-color: #0053a0;
+    color: white;
+}

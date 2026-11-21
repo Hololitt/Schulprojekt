@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Profil — sftWebshop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="content-container">
+    <section class="profile-card">
+        <div class="profile-header">
+            <div>
+                <h1>Mein Konto & Profil</h1>
+                <p id="profile-subtitle" class="profile-subtitle">Deine eingestellten Artikel im Überblick</p>
+            </div>
+            <div class="profile-header-actions">
+                <a href="/" class="btn-sell">Zum Dashboard</a>
+                <button type="button" id="logout-btn" class="btn-delete">Abmelden</button>
+            </div>
+        </div>
+
+        <div id="profile-status" class="profile-status" hidden></div>
+
+        <div class="profile-summary">
+            <div class="profile-info-item">
+                <span class="profile-label">Verkäufer</span>
+                <span id="info-seller" class="profile-value">—</span>
+            </div>
+            <div class="profile-info-item">
+                <span class="profile-label">Aktive Angebote</span>
+                <span id="info-count" class="profile-value">0</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section my-products-section">
+        <h2>Meine eingestellten Artikel</h2>
+        <div id="my-products-grid" class="product-grid">
+            <p class="loading-text">Artikel werden geladen...</p>
+        </div>
+    </section>
+</main>
+
+<script src="/js/load-header.js"></script>
+<script type="module" src="/JS/profile.js"></script>
+</body>
+</html>

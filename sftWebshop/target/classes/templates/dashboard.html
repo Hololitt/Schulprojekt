@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard - SFT-Ebay</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
+<div id="header-placeholder"></div>
+
+<main class="content-container">
+
+    <div class="dashboard-welcome">
+        <h1>Willkommen bei SFT-Ebay!</h1>
+        <p>Finde die besten Angebote, verkaufe deine Artikel und verwalte deine Einkäufe an einem Ort.</p>
+        <div class="dashboard-actions">
+            <a href="/create-product.html" class="btn-primary">Artikel verkaufen</a>
+            <a href="/profile.html" class="btn-secondary">Mein Konto</a>
+        </div>
+    </div>
+
+    <section class="products-section">
+        <div class="section-header">
+            <h2>Aktuelle Angebote</h2>
+
+            <form id="dashboardSearchForm" class="search-form" role="search">
+                <input
+                        type="search"
+                        id="dashboardSearchInput"
+                        name="title"
+                        placeholder="Artikel nach Titel suchen..."
+                        aria-label="Artikel nach Titel suchen"
+                >
+                <button type="submit" class="btn-primary">Suchen</button>
+                <button type="button" id="resetSearchBtn" class="btn-secondary">Zurücksetzen</button>
+            </form>
+        </div>
+
+        <div id="dashboardProductsGrid" class="product-grid">
+            <p class="loading-text">Artikel werden geladen...</p>
+        </div>
+    </section>
+
+</main>
+
+<script src="/JS/load-header.js"></script>
+<script src="/JS/dashboard.js"></script>
+<script src="/JS/search.js"></script>
 </body>
 </html>

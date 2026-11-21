@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
-@RestController("/product")
+@RestController
+@RequestMapping("/api/product")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
     private final CurrentUserProvider currentUserProvider;
 
 
-    @GetMapping("/product/save")
+    @PostMapping("/save")
     public ResponseEntity<HttpStatus> saveProduct(@Valid @RequestBody ProductCreationForm form) throws AccessDeniedException {
 
         Integer userId = currentUserProvider.getUserId();
@@ -32,14 +33,14 @@ return ResponseEntity
                 .body(HttpStatus.CREATED);
     }
 
-    @GetMapping("/product/{title}")
-    public ResponseEntity<List<ProductDTO>> findProduct(@PathVariable("{title}") String title){
+    @GetMapping("/{title}")
+    public ResponseEntity<List<ProductDTO>> findProduct(@PathVariable("title") String title){
         List<ProductDTO> productDTOS = productService.searchProductsByTitle(title);
        return ResponseEntity.ok(productDTOS);
     }
 
     @DeleteMapping("/delete/{id}")
-public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("{id}") Integer productId) throws AccessDeniedException {
+public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") Integer productId) throws AccessDeniedException {
 
         Integer userId = currentUserProvider.getUserId();
 
@@ -55,5 +56,18 @@ public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("{id}") Integer pr
                    .body(HttpStatus.FORBIDDEN);
        }
 
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> findAllProducts(){
+        List<ProductDTO> productDTOS = productService.findAllProducts();
+        return ResponseEntity.ok(productDTOS);
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<List<ProductDTO>> findOwnProducts() throws AccessDeniedException {
+        List<ProductDTO> productDTOS = productService.findProductsByUserId(currentUserProvider.getUserId());
+
+        return ResponseEntity.ok(productDTOS);
     }
 }

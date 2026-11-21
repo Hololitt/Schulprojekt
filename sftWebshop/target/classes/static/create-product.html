@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel einstellen — sftWebshop</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="content-container">
+    <section class="profile-card">
+        <div class="profile-header">
+            <div>
+                <h1>Neuen Artikel einstellen</h1>
+                <p class="profile-subtitle">Erstelle ein Angebot und veröffentliche es direkt im Shop</p>
+            </div>
+            <div class="profile-header-actions">
+                <a href="/profile.html" class="btn-sell">Meine Artikel</a>
+                <a href="/" class="btn-sell">Dashboard</a>
+            </div>
+        </div>
+
+        <div id="create-status" class="profile-status" hidden></div>
+
+        <div class="create-layout">
+            <form id="create-product-form" class="profile-form">
+                <div class="form-group">
+                    <label for="product-title">Titel</label>
+                    <input
+                            type="text"
+                            id="product-title"
+                            name="title"
+                            maxlength="120"
+                            placeholder="z. B. Mechanische Tastatur, neuwertig"
+                            required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price">Preis (€)</label>
+                    <input
+                            type="number"
+                            id="product-price"
+                            name="price"
+                            step="0.01"
+                            min="0.01"
+                            placeholder="z. B. 49.99"
+                            required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Beschreibung</label>
+                    <textarea
+                            id="product-description"
+                            name="description"
+                            rows="5"
+                            maxlength="1000"
+                            placeholder="Zustand, Lieferumfang, Besonderheiten..."
+                            required
+                    ></textarea>
+                </div>
+
+                <div class="profile-actions">
+                    <button type="submit" id="create-submit-btn" class="btn-konto">Artikel veröffentlichen</button>
+                    <button type="reset" id="create-reset-btn" class="btn-delete">Zurücksetzen</button>
+                </div>
+            </form>
+
+
+            <aside class="preview-box">
+                <span class="profile-label">Vorschau</span>
+                <article class="product-card preview-card">
+                    <div>
+                        <h3 id="preview-title" class="product-title">Titel deines Artikels</h3>
+                        <p id="preview-description" class="product-desc">Hier erscheint die Beschreibung deines Angebots.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span id="preview-price" class="product-price">0,00 €</span>
+                        <span class="product-seller">Dein Angebot</span>
+                    </div>
+                </article>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<script src="/js/load-header.js"></script>
+<script type="module" src="/JS/create-product.js"></script>
+</body>
+</html>

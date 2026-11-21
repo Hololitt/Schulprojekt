@@ -17,4 +17,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query("DELETE FROM Product p WHERE p.productId = :productId AND p.owner.userId = :userId")
     int deleteByIdAndOwnerId(Integer productId, Integer userId);
+
 }

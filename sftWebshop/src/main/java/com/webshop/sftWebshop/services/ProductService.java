@@ -71,4 +71,29 @@ return OperationStatus.FAILED;
 
         return OperationStatus.SUCCESSFUL;
     }
+
+
+    public List<ProductDTO> findAllProducts(){
+List<Product> products = productRepository.findAll();
+
+        return convertListToProductDTO(products);
+    }
+
+
+    private List<ProductDTO> convertListToProductDTO(List<Product> products){
+        List<ProductDTO> productsDTO = new ArrayList<>();
+
+        for(Product p : products){
+            ProductDTO productDTO = convertToProductDTO(p);
+            productsDTO.add(productDTO);
+        }
+
+        return productsDTO;
+    }
+
+    public List<ProductDTO> findProductsByUserId(Integer userId){
+List<Product> userProducts = userService.findUserByUserId(userId).getUser().getProductList();
+
+return convertListToProductDTO(userProducts);
+    }
 }

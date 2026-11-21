@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
